@@ -1,11 +1,9 @@
 name: Daily Cinematographer Job Alert
-
 on:
   schedule:
     # Run every day at 9 AM UTC (4 AM EST, 10 AM CET)
     - cron: '0 9 * * *'
   workflow_dispatch: # Allows manual trigger
-
 jobs:
   scrape-and-alert:
     runs-on: ubuntu-latest
@@ -15,7 +13,7 @@ jobs:
       uses: actions/checkout@v4
       
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.11'
         
@@ -33,7 +31,7 @@ jobs:
         python job_scraper.py
         
     - name: Upload job data
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: job-data
         path: latest_jobs.json
